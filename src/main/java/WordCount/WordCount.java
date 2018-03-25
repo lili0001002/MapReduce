@@ -10,6 +10,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class WordCount {
     public static void main(String [] args) throws Exception{
+        //基本的MapReduce
         Job job = Job.getInstance(new Configuration());
        //设置Mapper的属性
         job.setMapperClass(WCMapper.class);
