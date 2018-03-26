@@ -18,10 +18,15 @@ public class WordCount {
         job.setMapOutputValueClass(LongWritable.class);
         FileInputFormat.setInputPaths(job,new Path());
 
+
+
         job.setReducerClass(WCReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(LongWritable.class);
         FileOutputFormat.setOutputPath(job,new Path());
+
+        //设置CombinnerClass,Conbinner是一种特殊的Reducer,先在每个reducer端进行合并一波
+        job.setCombinerClass(WCReducer.class);
 
         job.waitForCompletion(true);
 

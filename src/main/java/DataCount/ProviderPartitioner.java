@@ -5,7 +5,7 @@ import org.apache.hadoop.mapreduce.Partitioner;
 
 import java.util.HashMap;
 import java.util.Map;
-
+// 如果不定义那么就会自动的放在HashPartitioner中
 //Partitioner是在Reducer执行之后执行，因此需要以Reducer的输出作为Partitioner的输入泛型s
 public class ProviderPartitioner extends Partitioner<Text,DCJavaBean>{
 
