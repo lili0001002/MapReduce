@@ -25,6 +25,11 @@ public class DC {
         job.setOutputKeyClass(Text.class);
         job.setMapOutputValueClass(DCJavaBean.class);
         FileOutputFormat.setOutputPath(job , new Path(args[1]));
+        //可以根据不同的分区将数据写到不同的reducer中，其数量是根据分区来决定的
+        job.setPartitionerClass(ProviderPartitioner.class);
+        //执行时候写出一个，参数作为操作的输入分块数，根据Partioner中的操作来放置0-3块
+        //
+        job.setNumReduceTasks(Integer.parseInt(args[2]));
 
         job.waitForCompletion(true);
     }
