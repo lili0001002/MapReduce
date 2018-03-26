@@ -4,6 +4,7 @@ package DataCount;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
@@ -20,6 +21,7 @@ public class DC {
         //当满足Mapper的第一个key，value和第二个key，value一致的时候可以省略以下语句
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(DCJavaBean.class);
+        FileInputFormat.setInputPaths(job , new Path(args[0]));
 
         job.setReducerClass(DCReduce.class);
         job.setOutputKeyClass(Text.class);
